@@ -6,7 +6,7 @@ const NodeCache = require('node-cache');
 const cors = require('cors');
 
 const app = express();
-const port = 4000;
+const port = 3000;
 
 // Enable CORS
 app.use(cors());
