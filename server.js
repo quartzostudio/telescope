@@ -14,8 +14,10 @@ app.use(cors());
 // Initialize cache with a default TTL of 10 minutes
 const cache = new NodeCache({ stdTTL: 600 });
 
+const getCacheKey = (url, width, height, dpi) => url + width + height + dpi
+
 app.get('/', async (req, res) => {
-    const { url, width = 1280, height = 800, dpi = 1 } = req.query;
+    const { url, width = '1280', height = '800', dpi = '1' } = req.query;
 
     if (!url) {
         return res.status(400).json({ error: "A valid URL is required" });
@@ -23,9 +25,12 @@ app.get('/', async (req, res) => {
 
     const viewportWidth = parseInt(width);
     const viewportHeight = parseInt(height);
+    const deviceScaleFactor = parseInt(dpi);
+    
+    const cacheKey = getCacheKey(url,width,height,dpi)
 
     //Check if the screenshot is cached
-    const cachedScreenshot = cache.get(url);
+    const cachedScreenshot = cache.get(cacheKey);
     if (cachedScreenshot) {
         return res.set('Content-Type', 'image/png').send(cachedScreenshot);
     }
@@ -41,7 +46,7 @@ app.get('/', async (req, res) => {
         await page.setViewport({
             width: viewportWidth,
             height: viewportHeight,
-            deviceScaleFactor: dpi, // You can adjust this if needed
+            deviceScaleFactor: deviceScaleFactor, // You can adjust this if needed
         });
 
         await page.goto(url, { waitUntil: 'networkidle0' });
@@ -52,7 +57,7 @@ app.get('/', async (req, res) => {
         res.status(200).send(screenshot);
         
         // Cache the screenshot
-        cache.set(url, screenshot);
+        cache.set(cacheKey, screenshot);
         await browser.close();
     } catch (error) {
         console.error(error);
