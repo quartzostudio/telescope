@@ -1,0 +1,13 @@
+{
+  "name": "telescope",
+  "packageManager": "yarn@4.5.3",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-cache": "^5.1.2",
+    "puppeteer": "^24.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
