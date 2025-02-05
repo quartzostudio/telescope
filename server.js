@@ -15,7 +15,7 @@ app.use(cors());
 const cache = new NodeCache({ stdTTL: 600 });
 
 app.get('/', async (req, res) => {
-    const { url, width = 1280, height = 800 } = req.query;
+    const { url, width = 1280, height = 800, dpi = 1 } = req.query;
 
     if (!url) {
         return res.status(400).json({ error: "A valid URL is required" });
@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
         await page.setViewport({
             width: viewportWidth,
             height: viewportHeight,
-            deviceScaleFactor: 1, // You can adjust this if needed
+            deviceScaleFactor: dpi, // You can adjust this if needed
         });
 
         await page.goto(url, { waitUntil: 'networkidle0' });
