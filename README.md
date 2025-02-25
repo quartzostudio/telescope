@@ -1,4 +1,4 @@
-# telescope
+# 🔭 telescope
 
 ## Install
 
