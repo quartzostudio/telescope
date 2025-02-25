@@ -19,10 +19,10 @@ Generate screenshots by passing the parameters to the endpoint:
 
 | Parameter | Description | Default Value |
 |-----------|-------------|---------------|
-| `url`     | The URL of the image or resource to process. | **Required** |
-| `width`   | The desired width of the output image. | `1280` |
-| `height`  | The desired height of the output image. | `800` |
-| `dpi` (integers only)     | The dots per inch (DPI) setting for the output image. | `1` |
+| `url`     | Website to take screenshot of (needs protocol e.g. `http://`) | **Required** |
+| `width`   | Image width | `1280` |
+| `height`  | Image height | `800` |
+| `dpi` (integers only)     | Image DPI (integers only) | `1` |
 
 ### Example
 ```
