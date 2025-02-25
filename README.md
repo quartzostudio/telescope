@@ -1,5 +1,7 @@
 # 🔭 telescope
 
+A web server that takes screenshots of web pages. Useful for dynamic Open Graph images.
+
 ## Install
 
 1. Clone this repository
