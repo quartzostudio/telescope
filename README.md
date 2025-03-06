@@ -1,6 +1,7 @@
 # 🔭 telescope
 
 A web server that takes screenshots of web pages. Useful for dynamic Open Graph images.
+Created with the power of open-source code by [quartzo studio](https://quartzo.studio).
 
 ## Install
 
